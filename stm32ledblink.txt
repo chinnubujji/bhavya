@@ -1,0 +1,31 @@
+#include "stm32c0xx_hal.h"
+
+// Define the LED pin
+#define LED_PIN GPIO_PIN_5
+#define LED_PORT GPIOC
+
+int main(void) {
+    // Initialize the system
+    HAL_Init();
+
+    // Initialize the LED GPIO port
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+
+    // Configure the LED pin as output
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = LED_PIN;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(LED_PORT, &GPIO_InitStruct);
+
+    while (1) {
+        // Toggle the LED
+        HAL_GPIO_TogglePin(LED_PORT, LED_PIN);
+
+        // Delay for 500 milliseconds
+        HAL_Delay(10000);
+    }
+
+    return 0;
+}
