@@ -1,0 +1,23 @@
+// Define the pin connected to the LED
+#define LED_PIN PB3
+
+// Define the pin connected to the PIR sensor
+#define PIR_PIN PB4
+
+void setup() {
+  // Initialize the LED pin as an output
+  pinMode(LED_PIN, OUTPUT);
+
+  // Initialize the PIR pin as an input
+  pinMode(PIR_PIN, INPUT);
+}
+
+void loop() {
+  // Check if motion is detected by the PIR sensor
+  if (digitalRead(PIR_PIN) == HIGH) {
+    // Turn the LED on if motion is detected
+    digitalWrite(LED_PIN, HIGH);
+    delay(500); // Wait for 0.5 seconds
+    digitalWrite(LED_PIN, LOW);
+  }
+}
