@@ -1,0 +1,17 @@
+from machine
+import Pin
+import time
+
+# Set up the PIR motion sensor
+pir = Pin(28, Pin.IN)
+
+# Set up the LED
+led = Pin(22, Pin.OUT)
+
+while True:
+    if pir.value() == 1:
+        print("Motion detected!")
+        led.value(1)  # Turn on the LED
+    else:
+        led.value(0)  # Turn off the LED
+    time.sleep(0.1)
