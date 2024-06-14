@@ -1,0 +1,21 @@
+from machine 
+import ADC, Pin
+import time
+
+# Initialize ADC on pin GP26 (A0)
+ldr = ADC(Pin(26))
+
+def read_ldr():
+    # Read the value from the LDR (0-65535)
+    ldr_value = ldr.read_u16()
+    return ldr_value
+
+while True:
+    # Read the LDR value
+    ldr_value = read_ldr()
+    
+    # Print the LDR value
+    print("LDR Value:", ldr_value)
+    
+    # Wait for a short period before the next reading
+    time.sleep(1)
