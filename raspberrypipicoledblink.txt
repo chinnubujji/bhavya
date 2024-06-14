@@ -1,0 +1,17 @@
+from machine 
+import Pin
+import utime
+
+# Set up GPIO pin 0 as output for the LED
+led = Pin(0, Pin.OUT)
+
+# Blink the LED indefinitely
+while True:
+    # Turn the LED on
+    led.on()
+    # Wait for 1 second
+    utime.sleep(1)
+    # Turn the LED off
+    led.off()
+    # Wait for another 1 second
+    utime.sleep(1)
