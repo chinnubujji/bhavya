@@ -1,0 +1,20 @@
+from machine 
+import Pin
+import onewire
+import ds18x20
+import time
+
+# The DS18B20 data line is connected to GPIO 2
+dat = Pin(2, Pin.IN, Pin.PULL_UP)
+
+# Create a onewire object
+ds = ds18x20.DS18X20(onewire.OneWire(dat))
+
+# Scan for devices on the onewire bus
+roms = ds.scan()
+
+while True:
+    # Read the temperature for each device
+    for rom in roms:
+        print('Temperature:', ds.read_temp(rom))
+    time.sleep(1)
